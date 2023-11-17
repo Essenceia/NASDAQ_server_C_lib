@@ -17,6 +17,9 @@ test : test.o
 test.o : test.c
 	$(CC) -c test.c $(FLAGS)
 
+moldudp64.o : test.c
+	$(CC) -c test.c $(FLAGS)
+
 lib:
 	ar rcs $(RELEASE_NAME) $^ 
 

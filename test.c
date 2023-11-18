@@ -1,6 +1,8 @@
 #include "history.hpp"
+#include "feed.hpp"
 
 int main(){
-	History h;
+	hst h;
+	feed f("");
 	return 0;
 }

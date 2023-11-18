@@ -13,7 +13,7 @@ FLAGS += -std=c++0x
 CC = g++ $(if $(debug),-DDEBUG -g)
 LD = g++
 
-test : test.o history.o moldudp64.o 
+test : test.o history.o moldudp64.o feed.o 
 	$(LD) -o test -g $^
 
 test.o : test.c
@@ -25,6 +25,9 @@ moldudp64.o : moldudp64.c moldudp64.h
 history.o: history.cpp history.hpp
 	$(CC) -c history.cpp $(FLAGS)
 
+feed.o: feed.cpp feed.hpp
+	$(CC) -c feed.cpp $(FLAGS)
+	
 lib:
 	ar rcs $(RELEASE_NAME) $^ 
 

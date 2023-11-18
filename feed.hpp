@@ -1,3 +1,6 @@
+#ifndef FEED_HPP
+#define FEED_HPP
+
 #include "history.hpp"
 
 /* Data feed class
@@ -11,12 +14,17 @@ class feed{
 	public:
 		feed(const char* path);	
 		~feed();
-		/* get next moldudp64 packet containing
+		/* generate the next moldudp64 packet containing
  		 * `cnt` itch messages */ 
-		moldudp64_s* get_next_packet(
+		void gen_nxt_pkt(
 			uint16_t cnt);	
+		/* get flattened packet */
+		uint8_t *get_nxt_pkt(
+			size_t *len);
 	private:
 		FILE* fptr;
 		hst h;
 		moldudp64_s *pkt;
 };
+
+#endif // FEED_HPP

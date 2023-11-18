@@ -13,7 +13,7 @@ FLAGS += -std=c++0x
 CC = g++ $(if $(debug),-DDEBUG -g)
 LD = g++
 
-test : test.o history.o moldudp64.o feed.o libitch.a 
+test : test.o history.o moldudp64.o feed.o server.o libitch.a libeth.a 
 	$(LD) -o test -g $^ $(LIB)
 
 test.o : test.c
@@ -27,7 +27,10 @@ history.o: history.cpp history.hpp
 
 feed.o: feed.cpp feed.hpp
 	$(CC) -I$(INC) -c feed.cpp $(FLAGS)
-	
+
+server.o: server.cpp server.hpp
+	$(CC) -I$(INC) -c server.cpp $(FLAGS)
+
 lib:
 	ar rcs $(RELEASE_NAME) $^ 
 

@@ -23,7 +23,7 @@ feed::~feed(){
 	fclose(this->fptr);
 }
 
-moldudp64_s* feed::get_next_packet(
+void feed::gen_nxt_pkt(
 			uint16_t cnt
 ){
 	/* clear packet */
@@ -43,6 +43,12 @@ moldudp64_s* feed::get_next_packet(
 		/* Copy the read message at the end of the mold struct. */
 		moldudp64_add_msg(pkt, buff, msg_len);
 	}
-	return this->pkt;
+	/* TODO : add to history */
 }
 
+uint8_t *feed::get_nxt_pkt(size_t *len){
+		uint8_t *flat = NULL;
+		*len = moldudp64_flatten(this->pkt, &flat);
+		assert(flat);
+		return flat;	
+}

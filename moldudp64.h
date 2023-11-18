@@ -88,8 +88,8 @@ static inline void mcmp_(
 	size_t nb
 )
 {
-	uint8_t *x = a;
-	uint8_t *y = b;
+	uint8_t *x =(uint8_t*) a;
+	uint8_t *y =(uint8_t*) b;
 	for (size_t i = 0; i < nb; i++) {
 		if (x[i] != y[i]) {
 			printf("mcmp fail : ('%s'[%ld] = '%hhx') != ('%s'[%ld] = '%hhx').\n", a_name, i, x[i], b_name, i, y[i]);
@@ -105,7 +105,7 @@ static inline void mlog_(
 	size_t nb
 )
 {
-	uint8_t *x = a;
+	uint8_t *x =(uint8_t*) a;
 	printf("array of '%ld' bytes : '%s(%p)'.\n", nb, name_a, a);
 	for(size_t i = 0; i < nb; i++) {
 		uint8_t c = x[i];
@@ -122,8 +122,8 @@ static inline void mlogs_(
 	size_t nb
 )
 {
-	uint8_t *x = a;
-	uint8_t *y = b;
+	uint8_t *x = (uint8_t*)a;
+	uint8_t *y = (uint8_t*)b;
 	printf("arrays of '%ld' bytes : '%s(%p)' - '%s(%p)'.\n", nb, name_a, a, name_b, b);
 	for(size_t i = 0; i < nb; i++) {
 		uint8_t c0 = x[i];

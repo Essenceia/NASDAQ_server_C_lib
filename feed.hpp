@@ -11,7 +11,12 @@ class feed{
 	public:
 		feed(const char* path);	
 		~feed();
+		/* get next moldudp64 packet containing
+ 		 * `cnt` itch messages */ 
+		moldudp64_s* get_next_packet(
+			uint16_t cnt);	
 	private:
 		FILE* fptr;
 		hst h;
+		moldudp64_s *pkt;
 };

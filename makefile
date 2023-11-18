@@ -2,7 +2,7 @@ DOC_DIR=doc
 RELEASE_DIR=release
 INC=inc
 RELEASE_NAME=lib_nasdaq_server.a
-
+LIB=-L. -litch
 ifndef debug
 debug:=
 endif
@@ -13,8 +13,8 @@ FLAGS += -std=c++0x
 CC = g++ $(if $(debug),-DDEBUG -g)
 LD = g++
 
-test : test.o history.o moldudp64.o feed.o 
-	$(LD) -o test -g $^
+test : test.o history.o moldudp64.o feed.o libitch.a 
+	$(LD) -o test -g $^ $(LIB)
 
 test.o : test.c
 	$(CC) -c test.c $(FLAGS)
@@ -26,7 +26,7 @@ history.o: history.cpp history.hpp
 	$(CC) -c history.cpp $(FLAGS)
 
 feed.o: feed.cpp feed.hpp
-	$(CC) -c feed.cpp $(FLAGS)
+	$(CC) -I$(INC) -c feed.cpp $(FLAGS)
 	
 lib:
 	ar rcs $(RELEASE_NAME) $^ 
@@ -41,7 +41,6 @@ release: lib
 
 clean:
 	-rm -f *.o	
-	-rm -f *.a	
 	-rm -f vgcore.*	
 	-rm -f test
 	-rm -fr $(RELEASE_DIR)

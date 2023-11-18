@@ -4,12 +4,12 @@
 #include <cstring>
 
 /* default constructor */
-History::History(){
+hst::hst(){
 	/* init history ... nothing to do */
 }
 
 /* default destructor */
-History::~History(){
+hst::~hst(){
 	/* free memory allocated by maps
  	 * iterate over the map and free memory
  	 * used for itch messages */
@@ -22,7 +22,7 @@ History::~History(){
 	} 
 }
 
-void History::add_itch_msg(
+void hst::add_itch_msg(
 			const sid_t sid, 
 			const uint64_t seq, 
 			const moldudp64_msg_s* msg
@@ -37,7 +37,7 @@ void History::add_itch_msg(
 }
 
 
-moldudp64_msg_s* History::get_itch_msg(
+moldudp64_msg_s* hst::get_itch_msg(
 			const sid_t sid,
 			const uint64_t seq
 ){
@@ -54,7 +54,9 @@ moldudp64_msg_s* History::get_itch_msg(
 	return ret;
 }
 
-void History::forget_session(const uint8_t sid[10]
+void hst::forget_session(
+	const sid_t sid
 ){
+	this->hmap[sid].clear();	
 }
 	

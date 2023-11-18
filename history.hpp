@@ -32,11 +32,11 @@ typedef std::map<uint64_t,moldudp64_msg_s*> mmap_t;
 /* history map */
 typedef std::map<sid_t, mmap_t> hmap_t;
 
-class History {
+class hst {
 	public:
 		/* Constructor */
-		History();
-		~History();
+		hst();
+		~hst();
 		/* add an itch message to the history */
 		void add_itch_msg(
 			const sid_t sid, 
@@ -47,7 +47,7 @@ class History {
 			const sid_t sid,
 			const uint64_t seq);
 		/* delete history by session id */
-		void forget_session(const uint8_t sid[10]);
+		void forget_session(const sid_t sid);
 	private:
 		hmap_t hmap;
 };

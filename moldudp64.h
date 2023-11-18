@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#include "tb_config.h"
+#define MOLDUDP64_MSG_CNT_MAX 100
 
 typedef struct __attribute__((__packed__)){
 	uint16_t  len;
@@ -58,7 +58,11 @@ void moldudp64_get_ids(moldudp64_s *p,uint16_t msg_cnt_offset,uint8_t *sid[10],u
 /* calculate the debug id for a message
  * debug id given based on { sid. seq, message offset }
  * used for RTL debug */
-void moldudp64_get_debug_id(const uint8_t sid[10], const uint64_t seq, const uint16_t msg_cnt_offset, uint8_t debug_id[18]);
+void moldudp64_get_debug_id(
+	const uint8_t sid[10], 
+	const uint64_t seq, 
+	const uint16_t msg_cnt_offset, 
+	uint8_t debug_id[18]);
 
 #define malloc_(x) (x *) malloc(sizeof(x))
 typedef uint8_t u8;

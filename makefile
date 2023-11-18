@@ -7,9 +7,11 @@ ifndef debug
 debug:=
 endif
 
-FLAGS = -std=gnu99 -Wall -Wextra -Wconversion -Wshadow -Wundef -fno-common  -Wno-unused-parameter -Wno-type-limits -fpic
-CC = cc $(if $(debug),-DDEBUG -g)
-LD = cc
+FLAGS = -Wall -Wextra -Wconversion -Wshadow -Wundef -fno-common  -Wno-unused-parameter -Wno-type-limits -fpic
+FLAGS += -fpermissive -Waddress-of-packed-member -Wpointer-arith
+
+CC = g++ $(if $(debug),-DDEBUG -g)
+LD = g++
 
 test : test.o 
 	$(LD) -o test -g $^
@@ -17,8 +19,11 @@ test : test.o
 test.o : test.c
 	$(CC) -c test.c $(FLAGS)
 
-moldudp64.o : test.c
-	$(CC) -c test.c $(FLAGS)
+moldudp64.o : moldudp64.c moldudp64.h
+	$(CC) -c moldudp64.c $(FLAGS)
+
+history.o: history.cpp history.hpp
+	$(CC) -c history.cpp $(FLAGS)
 
 lib:
 	ar rcs $(RELEASE_NAME) $^ 

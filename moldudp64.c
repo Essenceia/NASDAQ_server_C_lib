@@ -193,7 +193,7 @@ void moldudp64_print(const moldudp64_s *p){
 	printf("cnt %d 0x%04x",p->cnt, p->cnt);
 	for( int c = 0; c < p->cnt; c++){
 		printf("\n	len %d	0x",p->msg[c]->len);
-		moldudp64_get_debug_id(p->sid, p->seq, c, &debug_id);
+		moldudp64_get_debug_id(p->sid, p->seq, c, debug_id);
 		for(int i = 17; i > -1; i--)printf("%02hhx", debug_id[i]);
 		printf("\n    ");
 		for( int l=p->msg[c]->len; l>= 0; l--)

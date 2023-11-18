@@ -8,12 +8,12 @@ debug:=
 endif
 
 FLAGS = -Wall -Wextra -Wconversion -Wshadow -Wundef -fno-common  -Wno-unused-parameter -Wno-type-limits -fpic
-FLAGS += -fpermissive -Waddress-of-packed-member -Wpointer-arith
-
+FLAGS += -fpermissive
+FLAGS += -std=c++0x
 CC = g++ $(if $(debug),-DDEBUG -g)
 LD = g++
 
-test : test.o 
+test : test.o history.o moldudp64.o 
 	$(LD) -o test -g $^
 
 test.o : test.c

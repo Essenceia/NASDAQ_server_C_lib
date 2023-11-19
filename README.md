@@ -7,4 +7,11 @@ Objective :
 - keep track of sent ITCH packets within the session window
 
 - respond to re-request requests with a new MoldUDP64 packet containg the replay
-     
+    
+## Wireshark 
+
+Library has wireshark integration such that each packet can be dumped 
+to wireshark to help with debuging.
+We are using the same packet `hex` format as the `eth` library.
+
+![first!](doc/wireshark_1.png)  

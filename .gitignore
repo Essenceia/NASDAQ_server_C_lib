@@ -1,3 +1,4 @@
 *.o
 test
 vgcore.*
+network_dump.hex

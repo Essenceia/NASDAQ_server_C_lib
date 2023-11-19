@@ -1,5 +1,8 @@
 #include "server.hpp"
-
+#include <cassert>
+extern "C"{
+#include "inc/dump.h"
+}
 ser::ser(
 	const char* dump_path,
 	const uint8_t dst_mac[6],
@@ -29,13 +32,33 @@ ser::~ser(){
 };
 
 uint8_t* ser::get_nxt_feed_pkt(
-	const size_t *len, 
+	size_t *len, 
 	bool dump
 ){
+	uint16_t msg_cnt = 10;
 	/* generate a new mold packet with 10 message */
-	this->f->gen_nxt_pkt(10);
+	this->f->gen_nxt_pkt(msg_cnt);
 	size_t l;
 	uint8_t *app = this->f->get_nxt_pkt(&l);
-	
+	assert(app);
+
+	/* add mold to udp packet and package into
+ 	 * a mac packet */
+	update_eth_packet_data(this->eth, app, l);
+	#ifdef DEBUG
+	print_eth_packet(this->eth);
+	#endif
+
+	/* flatten packet */
+	uint8_t *flat; 
+	flat = write_eth_packet(this->eth, len);
+	assert(flat);
+
+	/* dump to wireshark compatible format */
+	if (dump){
+		dump_eth_packet(flat, *len, false);	
+	}
+
+	return flat;
 }
 

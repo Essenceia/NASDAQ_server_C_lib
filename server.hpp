@@ -19,7 +19,7 @@ class ser{
 		);
 		~ser();
 		/* get next itch data feed packet */
-		uint8_t* get_nxt_feed_pkt(const size_t *len, bool dump);
+		uint8_t* get_nxt_feed_pkt(size_t *len, bool dump);
 	
 	private:
 		feed *f;

@@ -1,20 +1,28 @@
 #include "server.hpp"
+#include <cstring>
 extern "C"{
 #include "inc/defs.h"
 }
 int main(){
+	uint8_t src_ip_lite[4] = {4,125,74,233};
+	uint32_t src_ip;
+	memcpy(&src_ip, &src_ip_lite, 4);
+	uint16_t src_port = 31004;
+	uint16_t dst_port = 31504;
 	uint8_t dst_mac[6] = DEFAULT_DST_MAC;
 	uint8_t src_mac[6] = DEFAULT_SRC_MAC;
 	ser s("/home/pitchu/rtl/hft/tb/12302019.NASDAQ_ITCH50",
 		dst_mac,
 		src_mac,
-		//(uint8_t*)DEFAULT_SRC_MAC,
-		DEFAULT_SRC_IP ,
+		src_ip,
 		DEFAULT_DST_IP ,
-		DEFAULT_SRC_PORT,
-		DEFAULT_DST_PORT,
+		src_port,
+		dst_port,
 		false);
 	size_t l;
-	uint8_t *p = s.get_nxt_feed_pkt(&l, true);
+	for(int i=0; i<100; i++){
+		uint8_t *p = s.get_nxt_feed_pkt(&l, true);
+		free(p);
+	}
 	return 0;
 }

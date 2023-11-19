@@ -107,6 +107,7 @@ size_t moldudp64_flatten(
 	}
 	seq_be = htobe64(p->seq); 
 	cnt_be = htobe16(p->cnt);
+	info("mold packet cnt %04x (be %04x)\n",p->cnt,cnt_be);
 
 	/* Copy utilities. */
 	#define COPY_VAL(x) { \
@@ -154,7 +155,7 @@ size_t moldudp64_flatten(
 		uint8_t a;
 		uint8_t debug_id[18];
 		
-		moldudp64_get_debug_id(p->sid, p->seq, msg_cnt, &debug_id);
+		moldudp64_get_debug_id(p->sid, p->seq, msg_cnt, debug_id);
 	
 		info("flatten mold msg, raw data, debug_id 0x");
 		for(int i=17; i > -1; i--)info("%02hhx", debug_id[i]);

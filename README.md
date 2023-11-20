@@ -17,3 +17,9 @@ We are using the same packet `hex` format as the [`eth` library](https://github.
 ![first!](doc/wireshark_2.png)  
 
 Credit goes to the [Open Markets Initiative for the Nasdaq Totalview 5.0 wireshark dissector.](https://github.com/Open-Markets-Initiative/wireshark-lua/tree/main) 
+
+## License
+
+This code is licensed under CC BY-NC 4.0, all rights belong to Julia Desmazes.
+
+

@@ -14,4 +14,6 @@ Library has wireshark integration such that each packet can be dumped
 to wireshark to help with debuging.
 We are using the same packet `hex` format as the `eth` library.
 
-![first!](doc/wireshark_1.png)  
+![first!](doc/wireshark_2.png)  
+
+Credit goes to the [Open Markets Initiative for the Nasdaq totalview wireshark dissector](https://github.com/Open-Markets-Initiative/wireshark-lua/tree/main) 

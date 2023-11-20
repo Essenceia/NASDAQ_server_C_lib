@@ -2,8 +2,13 @@
 #include <cstring>
 extern "C"{
 #include "inc/defs.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 }
 int main(){
+	/* init random number genreator */
+	srand(time(NULL));
 	uint8_t src_ip_lite[4] = {4,125,74,233};
 	uint32_t src_ip;
 	memcpy(&src_ip, &src_ip_lite, 4);
@@ -20,7 +25,7 @@ int main(){
 		dst_port,
 		false);
 	size_t l;
-	for(int i=0; i<100; i++){
+	for(int i=0; i<50000; i++){
 		uint8_t *p = s.get_nxt_feed_pkt(&l, true);
 		free(p);
 	}

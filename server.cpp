@@ -35,7 +35,7 @@ uint8_t* ser::get_nxt_feed_pkt(
 	size_t *len, 
 	bool dump
 ){
-	uint16_t msg_cnt = 10;
+	uint16_t msg_cnt =  (uint16_t)rand() % 15 + 1;
 	/* generate a new mold packet with 10 message */
 	this->f->gen_nxt_pkt(msg_cnt);
 	size_t l;
